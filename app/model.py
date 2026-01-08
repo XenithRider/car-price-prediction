@@ -30,20 +30,27 @@ def preprocess(payload: dict) -> pd.DataFrame:
     Converts raw input into the SAME one-hot encoded column structure used in training.
     Ensures missing columns are added and extra columns are dropped.
     """
+    # Create DataFrame from input
     df = pd.DataFrame([payload])
-
+    
+    # Define categorical columns
     categorical_cols = ["Fuel_Type", "Seller_Type", "Transmission", "Owner", "Car_Name"]
+    
+    # One-hot encode categorical columns
     df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
-
-    # Add missing columns
-    for col in _feature_columns:
-        if col not in df_encoded.columns:
-            df_encoded[col] = 0
-
-    # Keep only training columns, in correct order
-    df_encoded = df_encoded[_feature_columns]
-
-    return df_encoded
+    
+    # Create a DataFrame with all training columns initialized to 0
+    df_final = pd.DataFrame(0, index=df_encoded.index, columns=_feature_columns)
+    
+    # Fill in the values for columns that exist in the input
+    for col in df_encoded.columns:
+        if col in _feature_columns:
+            df_final[col] = df_encoded[col]
+    
+    # Ensure correct column order and data types
+    df_final = df_final[_feature_columns].astype(float)
+    
+    return df_final
 
 
 def predict_price(payload: dict) -> float:

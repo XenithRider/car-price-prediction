@@ -81,7 +81,8 @@ if st.button("💰 Predict Price"):
             res = requests.post(API_URL, json=payload, timeout=20)
             if res.status_code == 200:
                 data = res.json()
-                pred = data.get("prediction", data.get("predicted_price", None))
+                # Fixed: Use the correct key from your PredictionResponse model
+                pred = data.get("prediction_price")
 
                 if pred is None:
                     st.warning("⚠️ API responded but prediction key not found.")
