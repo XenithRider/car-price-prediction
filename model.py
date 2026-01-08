@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import joblib
 
-CAR_PRICE_API_DIR = Path(__file__).resolve().parent.parent
+CAR_PRICE_API_DIR = Path(__file__).resolve().parent
 MODEL_PATH = CAR_PRICE_API_DIR / "random_forest_model.pkl"
 COLS_PATH = CAR_PRICE_API_DIR / "feature_columns.pkl"
 
