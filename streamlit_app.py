@@ -34,7 +34,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-API_URL = "https://car-prediction-lpfl.onrender.com/predict"  # change if needed
+API_URL = "https://car-price-prediction-o3xf.onrender.com/predict" or "http://127.0.0.1:8080/predict"  
 
 # --- Input Section ---
 st.header("📋 Car Details")
