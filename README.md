@@ -3,7 +3,7 @@
 A full-stack machine learning application that predicts used car prices based on various features using a Random Forest Regressor model.
 
 ## Screenshot
-![Project Screenshot](image.png)
+![Project Screenshot](portfolio-preview.png)
 
 ## Project Structure
 
